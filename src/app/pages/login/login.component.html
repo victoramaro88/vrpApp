@@ -1,0 +1,28 @@
+<p-blockUI [blocked]="boolLoading"></p-blockUI>
+<p-toast  position="top-center"></p-toast>
+
+<div style="text-align: center;">
+  <p-card [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+    <div class="p-field p-grid">
+      <label for="cpf" class="p-col-fixed" style="width:100px">CPF</label>
+      <div class="p-col">
+        <p-inputMask [(ngModel)]="cpf" mask="999.999.999-99"></p-inputMask>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="p-field p-grid">
+      <label for="senha" class="p-col-fixed" style="width:100px">Senha</label><br>
+      <p-password  [style]="{'width': '100%;'}" id="senha" [(ngModel)]="senha" [feedback]="false"></p-password>
+    </div>
+
+    <br>
+
+    <button pButton type="button" label="Submit" (click)="Login();"></button>
+
+    <div *ngIf="boolLoading"  class="mt-3">
+      <p-progressBar mode="indeterminate" [style]="{'height': '13px'}"></p-progressBar>
+    </div>
+  </p-card>
+</div>
