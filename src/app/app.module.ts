@@ -20,12 +20,22 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {RippleModule} from 'primeng/ripple';
 import {ToastModule} from 'primeng/toast';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MenuComponent } from './pages/menu/menu.component';
+import {PanelMenuModule} from 'primeng/panelmenu';
+import { ParametrosVRPComponent } from './pages/configs/parametros-vrp/parametros-vrp.component';
+import { HomeComponent } from './pages/layout/home/home.component';
+import { ConteudoComponent } from './pages/layout/conteudo/conteudo.component';
+import {MenubarModule} from 'primeng/menubar';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    MenuComponent,
+    ParametrosVRPComponent,
+    HomeComponent,
+    ConteudoComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +54,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     CardModule,
     InputMaskModule,
     RippleModule,
-    ToastModule
+    ToastModule,
+    PanelMenuModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

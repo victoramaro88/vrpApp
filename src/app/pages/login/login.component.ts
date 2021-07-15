@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.http.validarLogin(cpfLogin, this.senha).subscribe(response => {
       // console.log(response);
       if(response.idUsuario && response.idUsuario > 0) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       }
       else if(response.erroMensagem && response.erroMensagem.length > 0) {
         this.messageService.add({severity:'error', summary:'Erro', detail:response.erroMensagem});
