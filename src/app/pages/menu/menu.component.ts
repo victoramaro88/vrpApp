@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -9,7 +10,9 @@ import {MenuItem} from 'primeng/api';
 export class MenuComponent implements OnInit {
   items: MenuItem[] = [];
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.items = [
@@ -90,6 +93,10 @@ export class MenuComponent implements OnInit {
           ]
       }
     ];
+  }
+
+  Sair() {
+    this.router.navigate(['/login']);
   }
 
 }

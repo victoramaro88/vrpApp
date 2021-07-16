@@ -26,6 +26,8 @@ import { ParametrosVRPComponent } from './pages/configs/parametros-vrp/parametro
 import { HomeComponent } from './pages/layout/home/home.component';
 import { ConteudoComponent } from './pages/layout/conteudo/conteudo.component';
 import {MenubarModule} from 'primeng/menubar';
+import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {MenubarModule} from 'primeng/menubar';
     RippleModule,
     ToastModule,
     PanelMenuModule,
-    MenubarModule
+    MenubarModule,
+    TableModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
