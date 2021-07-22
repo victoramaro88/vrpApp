@@ -22,22 +22,26 @@ export class MenuComponent implements OnInit {
         routerLink: '/home/dashboard'
     },
       {
-          label: 'File',
-          icon: 'pi pi-pw pi-file',
-          items: [{
-                  label: 'New',
-                  icon: 'pi pi-fw pi-plus',
-                  items: [
-                      {label: 'User',
-                      icon: 'pi pi-fw pi-user-plus',
-                      routerLink: '/home/conteudo'},
-                      {label: 'Filter', icon: 'pi pi-fw pi-filter'}
-                  ]
-              },
-              {label: 'Open', icon: 'pi pi-fw pi-external-link'},
-              {separator: true},
-              {label: 'Quit', icon: 'pi pi-fw pi-times'}
-          ]
+          label: 'VRP',
+          icon: 'pi pi-pw pi-briefcase',
+          items: [
+            {
+              label: 'Histórico',
+              icon: 'pi pi-sliders-h',
+              routerLink: '/home/historicoVRP'
+            },
+            {
+                label: 'Configurações',
+                icon: 'pi pi-fw pi-cog',
+                items: [
+                  {
+                    label: 'Parâmetros',
+                    icon: 'pi pi-sliders-h',
+                    routerLink: '/home/parametrosVRP'
+                  }
+                ]
+            }
+        ]
       },
       {
           label: 'Edit',

@@ -1,3 +1,4 @@
+import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.component';
 import { ConteudoComponent } from './pages/layout/conteudo/conteudo.component';
 import { HomeComponent } from './pages/layout/home/home.component';
 import { ParametrosVRPComponent } from './pages/configs/parametros-vrp/parametros-vrp.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'conteudo', component: ConteudoComponent },
       { path: 'parametrosVRP', component: ParametrosVRPComponent },
+      { path: 'historicoVRP', component: HistoricoVRPComponent },
     ]
   },
   // { path: 'dashboard', component: DashboardComponent },

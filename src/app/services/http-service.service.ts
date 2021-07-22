@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { HistoricoVRPModel } from "../models/historicoVRP.model";
 import { ParametrosVRPModel } from "../models/parametrosVRP.model";
 import { UsuarioModel } from "../models/usuario.model";
 import { VRPModel } from "../models/vrp.model";
@@ -31,5 +32,9 @@ export class HttpService {
 
   public ManterParametrosVRP(objParametros: ParametrosVRPModel[]): Observable<string> {
     return this.http.post<string>(`${environment.urlAPI}/VRP/ManterParametrosVRP`, objParametros);
+  }
+
+  public ListarHistoricoVRP(objParametros: HistoricoVRPModel[]): Observable<HistoricoVRPModel[]> {
+    return this.http.post<HistoricoVRPModel[]>(`${environment.urlAPI}/VRP/ListaHistoricoVRP`, objParametros);
   }
 }

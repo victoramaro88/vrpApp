@@ -29,7 +29,8 @@ export class ParametrosVRPComponent implements OnInit {
 
   constructor(
     private http: HttpService,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+    ) { }
 
   ngOnInit(): void {
     this.statuses = [{label: 'Ativo', value: true},{label: 'Inativo', value: false}]

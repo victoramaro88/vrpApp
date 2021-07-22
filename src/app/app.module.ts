@@ -28,6 +28,7 @@ import { ConteudoComponent } from './pages/layout/conteudo/conteudo.component';
 import {MenubarModule} from 'primeng/menubar';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
+import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {DropdownModule} from 'primeng/dropdown';
     MenuComponent,
     ParametrosVRPComponent,
     HomeComponent,
-    ConteudoComponent
+    ConteudoComponent,
+    HistoricoVRPComponent
   ],
   imports: [
     BrowserModule,
