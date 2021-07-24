@@ -10,6 +10,7 @@ export interface VRPModel {
   longitude: number;
   imagem: string;
   idCidade: number;
+  descCidade: string;
   idNumCel: number;
   tempoEnvioMinutos: number;
   status: boolean;

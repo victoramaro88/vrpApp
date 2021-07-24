@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.boolLoading = false;
     }, error => {
       this.msgs = [];
-      // console.log(error);
+      console.log(error);
       this.messageService.add({severity:'error', summary:'Erro', detail:error});
       this.boolLoading = false;
     });

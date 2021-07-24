@@ -20,7 +20,7 @@
         <tr>
             <td style="text-align: center;">{{item.descrVRP}}</td>
             <td style="text-align: center;">{{item.bairro}}</td>
-            <td style="text-align: center;">{{item.idCidade}}</td>
+            <td style="text-align: center;">{{item.descCidade}}</td>
             <td style="text-align: center;">{{item.status ? 'Ativa' : 'Inativa'}}</td>
             <td style="text-align: center;">
               <i class="pi pi-eye cursorMouse" title="Visualizar" style="color: rgb(13, 72, 210);" (click)="VisualizarHistorico(item.idVRP);"></i>
@@ -38,8 +38,60 @@
 <div *ngIf="boolVisualizarHistorico">
   <h3>Visualizando VRP: </h3>
 
-  <div style="text-align: right;">
-    <br>
-    <button pButton type="button" label="Voltar" class="p-button-raised p-button-info" (click)="Voltar();"></button>
+<div class="formgroup-inline align-items-center justify-content-center">
+  <div class="p-field p-col-12 p-md-4 inputfield mt-1">
+    <label for="dataIni">Data Inicial </label>
+    <p-calendar [(ngModel)]="dataInicial" [showIcon]="true" inputId="dataIni" dateFormat="dd/mm/yy"></p-calendar>
   </div>
+
+  <div class="p-field p-col-12 p-md-4 inputfield ml-2 mt-1">
+    <label for="dataFin">Data Final </label>
+    <p-calendar [(ngModel)]="dataFinal" [showIcon]="true" inputId="dataFin" [minDate]="dataInicial" dateFormat="dd/mm/yy"></p-calendar>
+  </div>
+
+  <div class="p-field p-col-12 p-md-4 inputfield ml-2 mt-1">
+    <button pButton type="button" label="Filtrar" class="p-button-raised p-button-secondary p-button-sm" (click)="FiltrarPorData();"></button>
+  </div>
+</div>
+
+<div class="mt-3">
+  <p-table
+    [value]="listaHistorico"
+    styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} para {last} de {totalRecords} registros"
+    [rowsPerPageOptions]="[10,25,50]"
+    >
+      <ng-template pTemplate="header">
+          <tr>
+              <th style="text-align: center;">Pressão Mont.</th>
+              <th style="text-align: center;">Pressão Jus.</th>
+              <th style="text-align: center;">Temperatura</th>
+              <th style="text-align: center;">Vazão</th>
+              <th style="text-align: center;">Data / Hora</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+          <tr>
+              <td style="text-align: center;"><small>{{item.pressaoMont}}</small></td>
+              <td style="text-align: center;"><small>{{item.pressaoJus}}</small></td>
+              <td style="text-align: center;"><small>{{item.temperatura}}</small></td>
+              <td style="text-align: center;"><small>{{item.vazao}}</small></td>
+              <td style="text-align: center;"><small>{{item.dataHora | date: 'dd/MM/yyyy - HH:mm:ss'}}</small></td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+            <td style="text-align: center;" colspan="5">Sem informações a serem exibidas.</td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>
+
+
+<div style="text-align: right;">
+  <br>
+  <button pButton type="button" label="Voltar" class="p-button-raised p-button-info" (click)="Voltar();"></button>
 </div>

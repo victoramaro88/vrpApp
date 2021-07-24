@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { HistoricoVRPModel } from "../models/historicoVRP.model";
 import { ParametrosVRPModel } from "../models/parametrosVRP.model";
+import { ParamListaHistoricoModel } from "../models/paramListaHistorico.model";
 import { UsuarioModel } from "../models/usuario.model";
 import { VRPModel } from "../models/vrp.model";
 
@@ -34,7 +35,7 @@ export class HttpService {
     return this.http.post<string>(`${environment.urlAPI}/VRP/ManterParametrosVRP`, objParametros);
   }
 
-  public ListarHistoricoVRP(objParametros: HistoricoVRPModel[]): Observable<HistoricoVRPModel[]> {
+  public ListarHistoricoVRP(objParametros: ParamListaHistoricoModel): Observable<HistoricoVRPModel[]> {
     return this.http.post<HistoricoVRPModel[]>(`${environment.urlAPI}/VRP/ListaHistoricoVRP`, objParametros);
   }
 }

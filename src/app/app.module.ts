@@ -29,6 +29,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.component';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.compo
     PanelMenuModule,
     MenubarModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
