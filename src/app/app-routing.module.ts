@@ -1,3 +1,4 @@
+import { UsuarioComponent } from './pages/configs/usuario/usuario.component';
 import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.component';
 import { ConteudoComponent } from './pages/layout/conteudo/conteudo.component';
 import { HomeComponent } from './pages/layout/home/home.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'conteudo', component: ConteudoComponent },
       { path: 'parametrosVRP', component: ParametrosVRPComponent },
       { path: 'historicoVRP', component: HistoricoVRPComponent },
+      { path: 'usuario', component: UsuarioComponent },
     ]
   },
   // { path: 'dashboard', component: DashboardComponent },

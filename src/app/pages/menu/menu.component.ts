@@ -20,14 +20,14 @@ export class MenuComponent implements OnInit {
         label: 'Dashboard',
         icon: 'pi pi-chart-bar',
         routerLink: '/home/dashboard'
-    },
+      },
       {
           label: 'VRP',
           icon: 'pi pi-pw pi-briefcase',
           items: [
             {
               label: 'Histórico',
-              icon: 'pi pi-sliders-h',
+              icon: 'pi pi-chart-line',
               routerLink: '/home/historicoVRP'
             },
             {
@@ -44,55 +44,23 @@ export class MenuComponent implements OnInit {
         ]
       },
       {
-          label: 'Edit',
-          icon: 'pi pi-fw pi-pencil',
+          label: 'Usuário',
+          icon: 'pi pi-user',
           items: [
-              {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-              {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+              {
+                label: 'Meus dados',
+                icon: 'pi pi-user-edit',
+                routerLink: '/home/usuario'
+              }
           ]
       },
       {
-          label: 'Help',
+          label: 'Ajuda',
           icon: 'pi pi-fw pi-question',
           items: [
               {
-                  label: 'Contents',
-                  icon: 'pi pi-pi pi-bars'
-              },
-              {
-                  label: 'Search',
-                  icon: 'pi pi-pi pi-search',
-                  items: [
-                      {
-                          label: 'Text',
-                          items: [
-                              {
-                                  label: 'Workspace'
-                              }
-                          ]
-                      },
-                      {
-                          label: 'User',
-                          icon: 'pi pi-fw pi-file',
-                      }
-              ]}
-          ]
-      },
-      {
-          label: 'Configurações',
-          icon: 'pi pi-fw pi-cog',
-          items: [
-              {
-                label: 'Parâmetros VRP',
-                icon: 'pi pi-sliders-h',
-                routerLink: '/home/parametrosVRP'
-              },
-              {
-                  label: 'Other',
-                  icon: 'pi pi-fw pi-tags',
-                  items: [
-                      {label: 'Delete', icon: 'pi pi-fw pi-minus'}
-                  ]
+                  label: 'Sobre',
+                  icon: 'pi pi-info-circle'
               }
           ]
       }

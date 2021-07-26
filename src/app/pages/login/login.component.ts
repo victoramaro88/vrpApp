@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.boolLoading = true;
     this.http.validarLogin(cpfLogin, this.senha).subscribe(response => {
-      // console.log(response);
+      console.log(response);
       if(response.idUsuario && response.idUsuario > 0) {
         this.router.navigate(['/home']);
       }
@@ -41,7 +41,11 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.msgs = [];
       console.log(error);
-      this.messageService.add({severity:'error', summary:'Erro', detail:error});
+      if(error.status === 0) {
+        this.messageService.add({severity:'error', summary:'Erro', detail:'Falha ao conectar com o banco de dados, contate o administrador do sistema.'});
+      } else {
+        this.messageService.add({severity:'error', summary:'Erro', detail:error.message});
+      }
       this.boolLoading = false;
     });
   }

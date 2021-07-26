@@ -30,6 +30,7 @@ import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.component';
 import {CalendarModule} from 'primeng/calendar';
+import { UsuarioComponent } from './pages/configs/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {CalendarModule} from 'primeng/calendar';
     ParametrosVRPComponent,
     HomeComponent,
     ConteudoComponent,
-    HistoricoVRPComponent
+    HistoricoVRPComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
