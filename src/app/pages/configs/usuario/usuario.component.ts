@@ -1,3 +1,4 @@
+import { UsuarioModel } from './../../../models/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
@@ -10,8 +11,10 @@ import { MessageService } from 'primeng/api';
 export class UsuarioComponent implements OnInit {
   boolLoading = false;
   constructor() { }
+  objUsr: UsuarioModel = {idUsuario: 0, cpfUsuario:'', nomeUsuario:'', idPerfil: 0, statusUsuario: false, senhaUsuario: '', erroMensagem: ''};
 
   ngOnInit(): void {
+    console.log(sessionStorage.getItem('usr'));
   }
 
 }

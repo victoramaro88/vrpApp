@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.boolLoading = true;
     this.http.validarLogin(cpfLogin, this.senha).subscribe(response => {
       console.log(response);
+      sessionStorage.setItem('usr', JSON.stringify(response));
       if(response.idUsuario && response.idUsuario > 0) {
         this.router.navigate(['/home']);
       }
