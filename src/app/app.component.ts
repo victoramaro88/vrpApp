@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -6,7 +6,7 @@ import { PrimeNGConfig } from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private primengConfig: PrimeNGConfig) {}
 
@@ -34,8 +34,8 @@ export class AppComponent implements OnInit {
         "matchAny": "Match Any",
         "addRule": "Add Rule",
         "removeRule": "Remove Rule",
-        "accept": "Yes",
-        "reject": "No",
+        "accept": "Sim",
+        "reject": "Não",
         "choose": "Choose",
         "upload": "Upload",
         "cancel": "Cancel",
@@ -46,13 +46,17 @@ export class AppComponent implements OnInit {
         "monthNamesShort": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Set", "Out", "Nov", "Dez"],
         "today": "Today",
         "weekHeader": "Wk",
-        "weak": 'Weak',
-        "medium": 'Medium',
-        "strong": 'Strong',
-        "passwordPrompt": 'Enter a password',
+        "weak": 'Fraco',
+        "medium": 'Médio',
+        "strong": 'Forte',
+        "passwordPrompt": 'Senha de 8 dígitos',
         "emptyMessage": 'No results found',
         "emptyFilterMessage": 'No results found'
     });
+  }
+
+  ngOnDestroy() {
+    sessionStorage.clear();
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-menu',
@@ -9,12 +10,16 @@ import {MenuItem} from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
   items: MenuItem[] = [];
+  objUsr: UsuarioModel = {idUsuario: 0, cpfUsuario:'', nomeUsuario:'', idPerfil: 0, statusUsuario: false, senhaUsuario: '', erroMensagem: ''};
 
   constructor(
     private router: Router,
     ) { }
 
   ngOnInit(): void {
+    let sessionUser = sessionStorage.getItem('usr');
+    this.objUsr = JSON.parse(sessionUser ? sessionUser : '');
+
     this.items = [
       {
         label: 'Dashboard',
@@ -47,11 +52,17 @@ export class MenuComponent implements OnInit {
           label: 'Usuário',
           icon: 'pi pi-user',
           items: [
-              {
-                label: 'Meus dados',
-                icon: 'pi pi-user-edit',
-                routerLink: '/home/usuario'
-              }
+            {
+              visible: (this.objUsr.idPerfil === 1 ? true : false),
+              label: 'Gerenciar Usuários',
+              icon: 'pi pi-user-plus',
+              routerLink: '/home/gerenciarUsuarios'
+            },
+            {
+              label: 'Meus dados',
+              icon: 'pi pi-user-edit',
+              routerLink: '/home/usuario'
+            }
           ]
       },
       {
