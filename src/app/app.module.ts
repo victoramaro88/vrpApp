@@ -36,6 +36,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -82,7 +83,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     DropdownModule,
     CalendarModule,
     SelectButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

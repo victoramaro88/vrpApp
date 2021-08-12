@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.router.navigate(['/home/dashboard']);
-    this.router.navigate(['/home/usuario']);
+    this.router.navigate(['/home/gerenciarUsuarios']);
   }
 
 }

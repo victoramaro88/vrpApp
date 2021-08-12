@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { HttpService } from 'src/app/services/http-service.service';
 import { PerfilUsuarioModel } from 'src/app/models/perfil.model';
 import {ConfirmationService} from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -25,13 +26,13 @@ export class UsuarioComponent implements OnInit {
   constructor(
     private http: HttpService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
     let sessionUser = sessionStorage.getItem('usr');
     this.objUsr = JSON.parse(sessionUser ? sessionUser : '');
-    console.log(this.objUsr);
 
     this.ListarPerfil(0);
   }
@@ -61,7 +62,7 @@ export class UsuarioComponent implements OnInit {
       this.confirmationService.confirm({
         message: 'Deseja salvar as alterações realizadas?',
         accept: () => {
-          console.log(this.objUsr);
+          this.ManterUsuario(this.objUsr);
         }
       });
     } else {
@@ -82,6 +83,42 @@ export class UsuarioComponent implements OnInit {
     } else {
       this.senhaNaoConfere = false;
     }
+  }
+
+  CancelaAlterarSenha() {
+    this.alterarSenha=false;
+    this.senhaNaoConfere=false;
+    this.senha = '';
+    this.objUsr.senhaUsuario = '';
+  }
+
+  ManterUsuario(objUsuario: UsuarioModel) {
+    this.boolLoading = true;
+    this.http.ManterUsuario(objUsuario).subscribe(response => {
+      if(response) {
+        if(response === "OK") {
+          this.messageService.add({severity:'success', summary:'Sucesso', detail: 'Usuário alterado com sucesso!'});
+          sessionStorage.setItem('usr', JSON.stringify(objUsuario));
+          let sessionUser = sessionStorage.getItem('usr');
+          this.objUsr = JSON.parse(sessionUser ? sessionUser : '');
+          setTimeout(() => {
+            this.router.navigate(['/home/dashboard']);
+          }, 2000);
+        } else {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response});
+        }
+      }
+      this.boolLoading = false;
+    }, error => {
+      this.msgs = [];
+      console.log(error);
+      if(error.status === 404) {
+        this.messageService.add({severity:'error', summary:'Erro', detail:'Erro ao conectar com o servidor.'});
+      } else {
+        this.messageService.add({severity:'error', summary:'Erro', detail: error.message});
+      }
+      this.boolLoading = false;
+    });
   }
 
 }

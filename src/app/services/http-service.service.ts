@@ -43,4 +43,16 @@ export class HttpService {
   public ListarPerfil(idPerfil: number): Observable<PerfilUsuarioModel[]> {
     return this.http.get<PerfilUsuarioModel[]>(`${environment.urlAPI}/Usuario/BuscarPerfil/${idPerfil}`);
   }
+
+  public ManterUsuario(objUsuario: UsuarioModel): Observable<string> {
+    return this.http.post<string>(`${environment.urlAPI}/Usuario/ManterUsuario`, objUsuario);
+  }
+
+  public BuscarUsuario(cpf: string): Observable<UsuarioModel[]> {
+    return this.http.get<UsuarioModel[]>(`${environment.urlAPI}/Usuario/BuscarUsuario/${cpf}`);
+  }
+
+  public AlteraStatusUsuario(idUsuario: number, statusUsuario: boolean): Observable<string> {
+    return this.http.get<string>(`${environment.urlAPI}/Usuario/AlteraStatusUsuario/${idUsuario}/${statusUsuario}`);
+  }
 }

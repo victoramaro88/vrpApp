@@ -1,5 +1,7 @@
 <h1>Usuário</h1>
-<p-blockUI [blocked]="boolLoading"></p-blockUI>
+<p-blockUI [blocked]="boolLoading">
+  <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+</p-blockUI>
 <p-toast  position="top-center"></p-toast>
 
 
@@ -23,7 +25,7 @@
       </div>
       <div class="field col-12 md:col-8 sm:col-12 text-center">
         <br>
-        <button *ngIf="!alterarSenha" (click)="alterarSenha=true" pButton pRipple type="button" label="Alterar Senha" class="p-button-raised p-button-warning"></button>
+        <button [disabled]="boolLoading" *ngIf="!alterarSenha" (click)="alterarSenha=true" pButton pRipple type="button" label="Alterar Senha" class="p-button-raised p-button-warning"></button>
         <div *ngIf="alterarSenha" class="grid text-center">
           <div class="field col-12 sm:col-5 text-center">
             <label for="senha">Nova senha</label><br>
@@ -36,7 +38,7 @@
             <br><b><small *ngIf="senhaNaoConfere" id="novaSenha-help" class="p-error">{{mensagemSenha}}</small></b>
           </div>
           <div class="field col-12 sm:col-2 pt-4">
-            <button (click)="alterarSenha=false; senhaNaoConfere=false;" pButton pRipple type="button" label="Cancelar" class="p-button-raised p-button-danger"></button>
+            <button [disabled]="boolLoading" (click)="CancelaAlterarSenha();" pButton pRipple type="button" label="Cancelar" class="p-button-raised p-button-danger"></button>
           </div>
         </div>
       </div>
@@ -46,6 +48,7 @@
 <hr>
 
 <div class="text-right">
-  <p-button (click)="Salvar()" icon="pi pi-check" label="Salvar" styleClass="p-mr-2"></p-button>
+  <button [disabled]="boolLoading" [routerLink]="['/home/dashboard']" routerLinkActive="router-link-active"  pButton icon="pi pi-times" type="button" class="p-button-raised p-button-danger" label="Cancelar" styleClass="p-mr-2"></button>
+  &nbsp;<p-button [disabled]="boolLoading" (click)="Salvar()" class="p-button-raised" icon="pi pi-check" label="Salvar" styleClass="p-mr-2"></p-button>
 </div>
 <p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
