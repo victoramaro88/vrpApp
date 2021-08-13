@@ -36,6 +36,7 @@ export class MenuComponent implements OnInit {
               routerLink: '/home/historicoVRP'
             },
             {
+                visible: (this.objUsr.idPerfil === 1 ? true : false),
                 label: 'Configurações',
                 icon: 'pi pi-fw pi-cog',
                 items: [

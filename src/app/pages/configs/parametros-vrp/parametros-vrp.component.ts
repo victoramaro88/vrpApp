@@ -22,10 +22,17 @@ export class ParametrosVRPComponent implements OnInit {
   boolEditarParametros = false;
   msgs: any[] = [];
   listaVRP: VRPModel[] = [];
+  // objVRP: VRPModel = {idVRP: 0, descrVRP: '', modelo: '', logradouro: '', numero: '', bairro: '', cep: '', latitude: 0, longitude: 0, imagem: '', idCidade: 0, descCidade: '', idNumCel: 0, tempoEnvioMinutos: 0, fatorMultVaz: 0, status: false};
   listaParametrosVRP: ParametrosVRPModel[] = [];
+  objParametro: ParametrosVRPModel = {idParametro: 0, pressao: 0, horaInicial: '', horaFinal: '', idVRP: 0, flStatus: false};
   statuses: SelectItem[] = [];
   clonedItens: { [s: string]: ParametrosVRPModel; } = {};
   item2: ParametrosVRPModel[] = [];
+  novoparametro = false;
+
+  pressaoInvalida = false;
+  horaInInvalida = false;
+  horaFiInvalida = false;
 
   constructor(
     private http: HttpService,
@@ -59,9 +66,12 @@ export class ParametrosVRPComponent implements OnInit {
 
   EditarParametros(idVRP: number) {
     this.boolLoading = true;
+    // let indexListaVRP = this.listaVRP.findIndex(v => v.idVRP === idVRP);
+    // this.objVRP = this.listaVRP[indexListaVRP];
+    // console.log(this.objVRP);
     this.boolEditarParametros = true;
     this.http.ListarParametrosVRP(idVRP).subscribe(response => {
-      // console.log(response);
+      console.log(response);
       if(response && response.length > 0) {
         this.listaParametrosVRP = response;
       }
@@ -106,7 +116,8 @@ export class ParametrosVRPComponent implements OnInit {
       });
     }
     else {
-        this.messageService.add({severity:'error', summary: 'Error', detail:'Invalid Price'});
+        this.messageService.add({severity:'error', summary: 'Error', detail:'Valor inválido!'});
+        this.boolLoading = false;
     }
   }
 
@@ -120,5 +131,50 @@ export class ParametrosVRPComponent implements OnInit {
     this.listaParametrosVRP= [];
     this.clonedItens= {};
     this.item2= [];
+  }
+
+  ValidaInformacoesNovoParametro() {
+    if(this.objParametro.pressao >= 0) {
+      this.pressaoInvalida = false;
+    } else {
+      this.pressaoInvalida = true;
+    }
+
+    if(this.VerificaHoraValida(this.objParametro.horaInicial)) {
+      this.horaInInvalida = false;
+    } else {
+      this.horaInInvalida = true;
+    }
+
+    if(this.VerificaHoraValida(this.objParametro.horaFinal)) {
+      if(this.objParametro.horaInicial.split(':')[0] <= this.objParametro.horaFinal.split(':')[0]) {
+        if(this.objParametro.horaInicial.split(':')[1] < this.objParametro.horaFinal.split(':')[1]) {
+          this.horaFiInvalida = false;
+        } else {
+          this.horaInInvalida = true;
+          this.horaFiInvalida = true;
+        }
+      } else {
+        this.horaInInvalida = true;
+        this.horaFiInvalida = true;
+      }
+    } else {
+      this.horaFiInvalida = true;
+    }
+  }
+
+  VerificaHoraValida(horaMin: string) {
+    console.log(horaMin.split(':'));
+    if(horaMin.length === 5 && horaMin.split(':').length <= 2) {
+      let hora = horaMin.split(':')[0];
+      let mint = horaMin.split(':')[1];
+      if(+hora <= 23 && +mint <= 59) {
+        return true;
+      } else {
+        return false;
+      }
+    }else {
+      return false;
+    }
   }
 }

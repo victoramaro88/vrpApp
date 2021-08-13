@@ -53,6 +53,63 @@
     </div>
   </div> -->
 
+  <!-- <div class="card">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6 sm:col-4">
+            <label for="nome">Nome</label>
+            <input [(ngModel)]="objUsr.nomeUsuario" id="nome" type="text" class="inputfield w-full" pInputText />
+        </div>
+        <div class="field col-12 md:col-3 sm:col-4">
+            <label for="cpf">CPF</label>
+            <input disabled="true" [(ngModel)]="objUsr.cpfUsuario" id="cpf" type="text" class="inputfield w-full" [dropSpecialCharacters]="false" mask="CPF_CNPJ" pInputText />
+        </div>
+        <div class="field col-6 md:col-3 sm:col-4 text-center">
+            <label for="status">Status</label>
+            <p-selectButton [disabled]="true" id="status"  [options]="[{label: 'Inativo', value: false}, {label: 'Ativo', value: true}]" [(ngModel)]="objUsr.statusUsuario" optionLabel="label" optionValue="value"></p-selectButton>
+        </div>
+        <div class="field col-6 md:col-2 sm:col-4">
+          <label for="perfil">Perfil</label><br>
+          <p-dropdown [disabled]="true" id="perfil" [options]="listaPerfil" [(ngModel)]="perfilSelecionado" placeholder="Selecione" optionLabel="descPerfil"></p-dropdown>
+        </div>
+    </div>
+  </div> -->
+
+  <div class="mb-3">
+    <div *ngIf="!novoparametro" style="text-align: right;">
+      <br>
+      <button pButton type="button" label="Novo" class="p-button-raised p-button-primary" (click)="novoparametro = true;"></button>
+      <br>
+    </div>
+
+    <div *ngIf="novoparametro">
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-4 sm:col-4 text-center">
+            <label for="pressao">Pressão</label>
+            <input [ngClass]="{'border-orange-500 border-3': pressaoInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.pressao" id="pressao" type="number" class="inputfield w-full" pInputText />
+            <br><b><small *ngIf="pressaoInvalida" id="novaSenha-help" class="p-error">Pressão inválida!</small></b>
+        </div>
+        <div class="field col-12 md:col-4 sm:col-4 text-center">
+            <label for="horaInicial">Hora Inicial</label>
+            <input [ngClass]="{'border-orange-500 border-3': horaInInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.horaInicial" id="horaInicial"[dropSpecialCharacters]="false" mask="99:99" type="text" class="inputfield w-full" pInputText />
+            <br><b><small *ngIf="horaInInvalida" id="novaSenha-help" class="p-error">Hora inválida!</small></b>
+        </div>
+        <div class="field col-6 md:col-4 sm:col-4 text-center">
+            <label for="horaFinal">Hora Final</label>
+            <input [ngClass]="{'border-orange-500 border-3': horaFiInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.horaFinal" id="horaFinal"[dropSpecialCharacters]="false" mask="99:99" type="text" class="inputfield w-full" pInputText />
+            <br><b><small *ngIf="horaFiInvalida" id="novaSenha-help" class="p-error">Hora inválida!</small></b>
+        </div>
+      </div>
+
+
+      <div style="text-align: right;" >
+        <button pButton type="button" label="Cancelar" class="p-button-raised p-button-danger" (click)="novoparametro = false;"></button>
+        &nbsp;<button pButton type="button" label="Salvar" class="p-button-raised p-button-primary" (click)="novoparametro = true;"></button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
   <div class="card">
     <p-table
     [value]="listaParametrosVRP"
@@ -62,16 +119,16 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <th>Pressão</th>
-                <th>Hora Inicial</th>
-                <th>Hora Final</th>
-                <th>Status</th>
-                <th style="width:8rem"></th>
+                <th style="text-align: center;">Pressão</th>
+                <th style="text-align: center;">Hora Inicial</th>
+                <th style="text-align: center;">Hora Final</th>
+                <th style="text-align: center;">Status</th>
+                <th style="text-align: center; width:8rem">Ação</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item let-editing="editing" let-ri="rowIndex">
             <tr [pEditableRow]="item">
-                <td>
+                <td style="text-align: center;">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="item.pressao">
@@ -81,7 +138,7 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>
+                <td style="text-align: center;">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="item.horaInicial" required>
@@ -91,7 +148,7 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>
+                <td style="text-align: center;">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="item.horaFinal" required>
@@ -101,7 +158,7 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>
+                <td style="text-align: center;">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <p-dropdown [options]="statuses" [(ngModel)]="item.flStatus" [style]="{'width':'100%'}"></p-dropdown>
@@ -126,39 +183,9 @@
     </p-table>
   </div>
 
-  <!-- <p-table
-  [value]="listaParametrosVRP"
-  styleClass="p-datatable-gridlines p-datatable-striped"
-  >
-  <ng-template pTemplate="header">
-      <tr>
-          <th style="text-align: center;">Pressão</th>
-          <th style="text-align: center;">Hora Inicial</th>
-          <th style="text-align: center;">Hora Final</th>
-          <th style="text-align: center;">Status</th>
-          <th style="text-align: center;">Ações</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-item>
-      <tr>
-          <td style="text-align: center;">{{item.pressao}}</td>
-          <td style="text-align: center;">{{item.horaInicial}}</td>
-          <td style="text-align: center;">{{item.horaFinal}}</td>
-          <td style="text-align: center;">{{item.flStatus ? 'Ativa' : 'Inativa'}}</td>
-          <td style="text-align: center;">
-            <i class="pi pi-pencil cursorMouse" title="Editar" style="color: darkblue;"></i>
-          </td>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="emptymessage">
-    <tr>
-        <td colspan="5">Sem informações a serem exibidas.</td>
-    </tr>
-  </ng-template>
-  </p-table> -->
+  <hr>
 
   <div style="text-align: right;">
-    <br>
     <button pButton type="button" label="Cancelar" class="p-button-raised p-button-danger" (click)="CancelarOperacao();"></button>
   </div>
 </div>

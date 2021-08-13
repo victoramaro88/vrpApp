@@ -4,6 +4,7 @@ export interface HistoricoVRPModel {
   pressaoMont: number;
   pressaoJus: number;
   vazao: number;
+  tensaoBat: number;
   dataHora: Date;
   idVRP: number;
 }

@@ -70,6 +70,7 @@
               <th style="text-align: center;">Pressão Jus.</th>
               <th style="text-align: center;">Temperatura</th>
               <th style="text-align: center;">Vazão</th>
+              <th style="text-align: center;">Bateria</th>
               <th style="text-align: center;">Data / Hora</th>
           </tr>
       </ng-template>
@@ -79,6 +80,7 @@
               <td style="text-align: center;"><small>{{item.pressaoJus}}</small></td>
               <td style="text-align: center;"><small>{{item.temperatura}}</small></td>
               <td style="text-align: center;"><small>{{item.vazao}}</small></td>
+              <td style="text-align: center;"><small>{{item.tensaoBat}} V</small></td>
               <td style="text-align: center;"><small>{{item.dataHora | date: 'dd/MM/yyyy - HH:mm:ss'}}</small></td>
           </tr>
       </ng-template>

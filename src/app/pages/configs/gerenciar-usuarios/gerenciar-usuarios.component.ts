@@ -21,6 +21,7 @@ export class GerenciarUsuariosComponent implements OnInit {
   alterarSenha = false;
   senha = '';
   senhaNaoConfere = false;
+  editarUsuario = false;
   mensagemSenha = '';
 
   constructor(
@@ -35,15 +36,15 @@ export class GerenciarUsuariosComponent implements OnInit {
   }
 
   ListarPerfil(idPerfil: number) {
+    this.editarUsuario = false;
     this.boolLoading = true;
     this.http.ListarPerfil(idPerfil).subscribe(response => {
-      console.log(response);
+      // console.log(response);
       if(response && response.length > 0) {
         this.listaPerfil = response;
         this.perfilSelecionado = this.listaPerfil.find(item => item.idPerfil === this.objUsr.idPerfil) || {idPerfil: 0, descPerfil: '', statusPerfil: false};
         this.BuscarUsuario('');
       }
-      this.boolLoading = false;
     }, error => {
       this.msgs = [];
       console.log(error);
@@ -57,9 +58,8 @@ export class GerenciarUsuariosComponent implements OnInit {
   }
 
   BuscarUsuario(cpfUsr: string) {
-    this.boolLoading = true;
     this.http.BuscarUsuario(cpfUsr).subscribe(response => {
-      console.log(response)
+      // console.log(response)
       if(response.length > 0) {
         this.listaUsuarios = response;
       }
@@ -77,16 +77,26 @@ export class GerenciarUsuariosComponent implements OnInit {
   }
 
   SelecionarUsuario(idUsuario: number) {
-    console.log(idUsuario);
+    this.editarUsuario = true;
+    let indice = this.listaUsuarios.findIndex(u => u.idUsuario === idUsuario);
+    this.objUsr = this.listaUsuarios[indice];
+    this.perfilSelecionado = this.listaPerfil.find(item => item.idPerfil === this.objUsr.idPerfil) || {idPerfil: 0, descPerfil: '', statusPerfil: false};
+  }
+
+  CancelaAlterarUsuario() {
+    this.editarUsuario = false;
   }
 
   AlteraStatusUsuario(idUsuario: number, statusUsuario: boolean) {
     this.boolLoading = true;
     this.http.AlteraStatusUsuario(idUsuario, statusUsuario).subscribe(response => {
-      console.log(response)
       if(response === 'OK') {
         this.messageService.add({severity:'success', summary:'Sucesso', detail: 'Status alterado com sucesso!'});
-        // this.listaUsuarios = response;
+        for (const item of this.listaUsuarios) {
+          if(item.idUsuario === idUsuario) {
+            item.statusUsuario = statusUsuario;
+          }
+        }
       }
       this.boolLoading = false;
     }, error => {
@@ -100,4 +110,70 @@ export class GerenciarUsuariosComponent implements OnInit {
       this.boolLoading = false;
     });
   }
+
+  Salvar() {
+    this.objUsr.idPerfil = this.perfilSelecionado.idPerfil;
+    if(!this.senhaNaoConfere) {
+      this.confirmationService.confirm({
+        message: 'Deseja salvar as alterações realizadas?',
+        accept: () => {
+          this.ManterUsuario(this.objUsr);
+        }
+      });
+    } else {
+      this.messageService.add({severity:'warn', summary:'Erro', detail: this.mensagemSenha});
+    }
+  }
+
+  ManterUsuario(objUsuario: UsuarioModel) {
+    this.boolLoading = true;
+    this.http.ManterUsuario(objUsuario).subscribe(response => {
+      if(response) {
+        if(response === "OK") {
+          this.messageService.add({severity:'success', summary:'Sucesso', detail: 'Usuário alterado com sucesso!'});
+          sessionStorage.setItem('usr', JSON.stringify(objUsuario));
+          let sessionUser = sessionStorage.getItem('usr');
+          this.objUsr = JSON.parse(sessionUser ? sessionUser : '');
+          setTimeout(() => {
+            this.ListarPerfil(0);
+          }, 2000);
+        } else {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response});
+        }
+      }
+      // this.boolLoading = false;
+    }, error => {
+      this.msgs = [];
+      console.log(error);
+      if(error.status === 404) {
+        this.messageService.add({severity:'error', summary:'Erro', detail:'Erro ao conectar com o servidor.'});
+      } else {
+        this.messageService.add({severity:'error', summary:'Erro', detail: error.message});
+      }
+      this.boolLoading = false;
+    });
+  }
+
+  ValidaSenhas() {
+    if(this.senha.length < 8) {
+      this.mensagemSenha = 'A senha deve ter mais de 8 caracteres!'
+      this.senhaNaoConfere = true;
+      return;
+    }
+
+    if(this.senha !== this.objUsr.senhaUsuario) {
+      this.mensagemSenha = 'Senhas não conferem!'
+      this.senhaNaoConfere = true;
+    } else {
+      this.senhaNaoConfere = false;
+    }
+  }
+
+  CancelaAlterarSenha() {
+    this.alterarSenha=false;
+    this.senhaNaoConfere=false;
+    this.senha = '';
+    this.objUsr.senhaUsuario = '';
+  }
+
 }
