@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.router.navigate(['/home/dashboard']);
-    this.router.navigate(['/home/parametrosVRP']);
+    this.router.navigate(['/home/dashboard']);
+    // this.router.navigate(['/home/parametrosVRP']);
   }
 
 }

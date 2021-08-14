@@ -101,4 +101,11 @@ export class HistoricoVRPComponent implements OnInit {
     this.boolVisualizarHistorico = false;
   }
 
+  AtualizarHistorico() {
+    let parametrosVRP: ParamListaHistoricoModel = { idVRP: 0, dataInicial: undefined, dataFinal: undefined, linhas: 0 };
+    parametrosVRP.idVRP = this.idVRP;
+    parametrosVRP.linhas = 100;
+    this.ListarHistoricoVRP(parametrosVRP);
+  }
+
 }
