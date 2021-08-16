@@ -37,43 +37,6 @@
 
 <br>
 <div *ngIf="boolEditarParametros">
-  <!-- <div class="p-field p-grid">
-  <label for="tempoComunicacao" class="p-col-fixed" style="width:100px">Tempo de comunicação:</label>
-  <div class="p-col">
-      <input style="text-align: center;" id="tempoComunicacao" aria-describedby="tempoComunicacao-help" type="number" pInputText>
-      <br><small id="tempoComunicacao-help">Mínimo 10 e máximo 60 minutos.</small>
-  </div>
-  </div>
-  <br>
-  <div class="p-field p-grid">
-    <label for="fatorMultiplicacao" class="p-col-fixed" style="width:100px">Fator multiplicação:</label>
-    <div class="p-col">
-        <input style="text-align: center;" id="fatorMultiplicacao" aria-describedby="fatorMultiplicacao-help" type="number" pInputText>
-        <br><small id="fatorMultiplicacao-help">Verifique o hidrômetro instalado.</small>
-    </div>
-  </div> -->
-
-  <!-- <div class="card">
-    <div class="formgrid grid">
-        <div class="field col-12 md:col-6 sm:col-4">
-            <label for="nome">Nome</label>
-            <input [(ngModel)]="objUsr.nomeUsuario" id="nome" type="text" class="inputfield w-full" pInputText />
-        </div>
-        <div class="field col-12 md:col-3 sm:col-4">
-            <label for="cpf">CPF</label>
-            <input disabled="true" [(ngModel)]="objUsr.cpfUsuario" id="cpf" type="text" class="inputfield w-full" [dropSpecialCharacters]="false" mask="CPF_CNPJ" pInputText />
-        </div>
-        <div class="field col-6 md:col-3 sm:col-4 text-center">
-            <label for="status">Status</label>
-            <p-selectButton [disabled]="true" id="status"  [options]="[{label: 'Inativo', value: false}, {label: 'Ativo', value: true}]" [(ngModel)]="objUsr.statusUsuario" optionLabel="label" optionValue="value"></p-selectButton>
-        </div>
-        <div class="field col-6 md:col-2 sm:col-4">
-          <label for="perfil">Perfil</label><br>
-          <p-dropdown [disabled]="true" id="perfil" [options]="listaPerfil" [(ngModel)]="perfilSelecionado" placeholder="Selecione" optionLabel="descPerfil"></p-dropdown>
-        </div>
-    </div>
-  </div> -->
-
   <div class="mb-3">
     <div *ngIf="!novoparametro" style="text-align: right;">
       <br>
@@ -90,12 +53,12 @@
         </div>
         <div class="field col-12 md:col-4 sm:col-4 text-center">
             <label for="horaInicial">Hora Inicial</label>
-            <input [ngClass]="{'border-orange-500 border-3': horaInInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.horaInicial" id="horaInicial"[dropSpecialCharacters]="false" mask="99:99" type="text" class="inputfield w-full" pInputText />
+            <input [ngClass]="{'border-orange-500 border-3': horaInInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.horaInicial" id="horaInicial"[dropSpecialCharacters]="false" mask="00:00" type="text" class="inputfield w-full" pInputText />
             <br><b><small *ngIf="horaInInvalida" id="novaSenha-help" class="p-error">Hora inválida!</small></b>
         </div>
         <div class="field col-6 md:col-4 sm:col-4 text-center">
             <label for="horaFinal">Hora Final</label>
-            <input [ngClass]="{'border-orange-500 border-3': horaFiInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.horaFinal" id="horaFinal"[dropSpecialCharacters]="false" mask="99:99" type="text" class="inputfield w-full" pInputText />
+            <input [ngClass]="{'border-orange-500 border-3': horaFiInvalida}" (blur)="ValidaInformacoesNovoParametro();" [(ngModel)]="objParametro.horaFinal" id="horaFinal"[dropSpecialCharacters]="false" mask="00:00" type="text" class="inputfield w-full" pInputText />
             <br><b><small *ngIf="horaFiInvalida" id="novaSenha-help" class="p-error">Hora inválida!</small></b>
         </div>
       </div>
@@ -103,7 +66,7 @@
 
       <div style="text-align: right;" >
         <button pButton type="button" label="Cancelar" class="p-button-raised p-button-danger" (click)="novoparametro = false;"></button>
-        &nbsp;<button pButton type="button" label="Salvar" class="p-button-raised p-button-primary" (click)="novoparametro = true;"></button>
+        &nbsp;<button pButton type="button" label="Salvar" class="p-button-raised p-button-primary" (click)="SalvarNovoParametro();"></button>
       </div>
     </div>
   </div>
