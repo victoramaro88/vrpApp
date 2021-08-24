@@ -67,8 +67,29 @@ export class NovoUsuarioComponent implements OnInit {
       this.objUsr.idPerfil = this.perfilSelecionado.idPerfil;
       this.objUsr.cpfUsuario = this.objUsr.cpfUsuario.replace('.', '').replace('.', '').replace('-', '');
       if(this.ValidaParametros()) {
-        console.log(this.objUsr.cpfUsuario.length);
-        console.log(this.objUsr);
+        this.boolLoading = true;
+        this.http.InserirUsuario(this.objUsr).subscribe(response => {
+          // console.log(response);
+          if(response && response === 'OK') {
+            this.messageService.add({severity:'success', summary:'Sucesso', detail:'Usuário inserido com sucesso!'});
+            setTimeout(() => {
+              this.router.navigate(['/home/gerenciarUsuarios']);
+            }, 2000);
+          }
+          else {
+            this.messageService.add({severity:'error', summary:'Erro', detail:response.toString()});
+          }
+          this.boolLoading = false;
+        }, error => {
+          this.msgs = [];
+          console.log(error);
+          if(error.status === 404) {
+            this.messageService.add({severity:'error', summary:'Erro', detail:'Erro ao conectar com o servidor.'});
+          } else {
+            this.messageService.add({severity:'error', summary:'Erro', detail: error.message});
+          }
+          this.boolLoading = false;
+        });
       }
     }
 
@@ -88,7 +109,6 @@ export class NovoUsuarioComponent implements OnInit {
     }
 
     ValidaParametros() {
-      console.log(this.objUsr.nomeUsuario.length);
       if(this.objUsr.nomeUsuario.length > 2) {
         if(this.objUsr.cpfUsuario.length >= 11) {
           if(this.objUsr.idPerfil > 0) {

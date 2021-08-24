@@ -48,6 +48,10 @@ export class HttpService {
     return this.http.post<string>(`${environment.urlAPI}/Usuario/ManterUsuario`, objUsuario);
   }
 
+  public InserirUsuario(objUsuario: UsuarioModel): Observable<string> {
+    return this.http.post<string>(`${environment.urlAPI}/Usuario/InserirUsuario`, objUsuario);
+  }
+
   public BuscarUsuario(cpf: string): Observable<UsuarioModel[]> {
     return this.http.get<UsuarioModel[]>(`${environment.urlAPI}/Usuario/BuscarUsuario/${cpf}`);
   }
