@@ -74,7 +74,7 @@ export class ParametrosVRPComponent implements OnInit {
     // console.log(this.objVRP);
     this.boolEditarParametros = true;
     this.http.ListarParametrosVRP(idVRP).subscribe(response => {
-      console.log(response);
+      // console.log(response);
       if(response && response.length > 0) {
         this.listaParametrosVRP = response;
       }
@@ -152,11 +152,11 @@ export class ParametrosVRPComponent implements OnInit {
     if(this.VerificaHoraValida(this.objParametro.horaFinal)) {
       if(this.objParametro.horaInicial.split(':')[0] === this.objParametro.horaFinal.split(':')[0]) {
         if(this.objParametro.horaInicial.split(':')[1] > this.objParametro.horaFinal.split(':')[1]) {
-          console.log('Horário final não pode ser menor que inicial.');
+          // console.log('Horário final não pode ser menor que inicial.');
           this.horaInInvalida = true;
           this.horaFiInvalida = true;
         } else if(this.objParametro.horaInicial.split(':')[1] === this.objParametro.horaFinal.split(':')[1]) {
-          console.log('Horários não podem ser iguais.');
+          // console.log('Horários não podem ser iguais.');
           this.horaFiInvalida = true;
         }
         else {

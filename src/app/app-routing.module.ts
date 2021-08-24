@@ -8,6 +8,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NovoUsuarioComponent } from './pages/configs/novo-usuario/novo-usuario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'historicoVRP', component: HistoricoVRPComponent },
       { path: 'usuario', component: UsuarioComponent },
       { path: 'gerenciarUsuarios', component: GerenciarUsuariosComponent },
+      { path: 'novoUsuario', component: NovoUsuarioComponent },
     ]
   },
   // { path: 'dashboard', component: DashboardComponent },

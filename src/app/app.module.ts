@@ -37,6 +37,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { NovoUsuarioComponent } from './pages/configs/novo-usuario/novo-usuario.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -55,7 +56,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ConteudoComponent,
     HistoricoVRPComponent,
     UsuarioComponent,
-    GerenciarUsuariosComponent
+    GerenciarUsuariosComponent,
+    NovoUsuarioComponent
   ],
   imports: [
     BrowserModule,
