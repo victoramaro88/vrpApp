@@ -1,0 +1,40 @@
+<h1>GERENCIAR VRP</h1>
+<p-blockUI [blocked]="boolLoading"></p-blockUI>
+<p-toast  position="top-center"></p-toast>
+
+<div class="pb-3 text-right">
+  <button pButton pRipple routerLink='/home/cadastroVRP' [queryParams]="{idVRP: 0}" type="button" label="Nova VRP" class="p-button-raised p-button-sm"></button>
+</div>
+
+<div>
+  <p-table
+  [value]="listaVRP"
+  styleClass="p-datatable-gridlines p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="text-align: center;">Descrição</th>
+            <th style="text-align: center;">Bairro</th>
+            <th style="text-align: center;">Cidade</th>
+            <th style="text-align: center;">Status</th>
+            <th style="text-align: center;">Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td style="text-align: center;">{{item.descrVRP}}</td>
+            <td style="text-align: center;">{{item.bairro}}</td>
+            <td style="text-align: center;">{{item.descCidade}}</td>
+            <td style="text-align: center;">{{item.status ? 'Ativa' : 'Inativa'}}</td>
+            <td style="text-align: center;">
+              <i class="pi pi-pencil cursorMouse" title="Editar" style="color: rgb(13, 72, 210);" (click)="EditarVRP(item.idVRP);"></i>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td style="text-align: center;" colspan="5">Sem informações a serem exibidas.</td>
+      </tr>
+  </ng-template>
+  </p-table>
+</div>

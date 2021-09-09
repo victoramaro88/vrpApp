@@ -31,6 +31,11 @@ export class MenuComponent implements OnInit {
           icon: 'pi pi-pw pi-briefcase',
           items: [
             {
+              label: 'Cadastro',
+              icon: 'pi pi-globe',
+              routerLink: '/home/gerenciarVRP'
+            },
+            {
               label: 'Histórico',
               icon: 'pi pi-chart-line',
               routerLink: '/home/historicoVRP'

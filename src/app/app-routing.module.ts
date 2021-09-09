@@ -1,3 +1,5 @@
+import { GerenciarVRPComponent } from './pages/configs/gerenciar-vrp/gerenciar-vrp.component';
+import { CadastroVRPComponent } from './pages/configs/cadastro-vrp/cadastro-vrp.component';
 import { GerenciarUsuariosComponent } from './pages/configs/gerenciar-usuarios/gerenciar-usuarios.component';
 import { UsuarioComponent } from './pages/configs/usuario/usuario.component';
 import { HistoricoVRPComponent } from './pages/historico-vrp/historico-vrp.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
       { path: 'usuario', component: UsuarioComponent },
       { path: 'gerenciarUsuarios', component: GerenciarUsuariosComponent },
       { path: 'novoUsuario', component: NovoUsuarioComponent },
+      { path: 'cadastroVRP', component: CadastroVRPComponent },
+      { path: 'gerenciarVRP', component: GerenciarVRPComponent },
     ]
   },
   // { path: 'dashboard', component: DashboardComponent },

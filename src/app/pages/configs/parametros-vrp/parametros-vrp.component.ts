@@ -219,14 +219,16 @@ export class ParametrosVRPComponent implements OnInit {
 
         if(horaIn >= horaInVRP && horaFin <= horaFinVRP) {
           console.log('JÁ EXISTE PROGRAMAÇÃO PARA ESSE HORÁRIO');
+          this.boolLoading = false;
+          return;
         }
 
 
-        console.log(horaInicialVRP);
-        console.log(horaFinalVRP);
+        // console.log(horaInicialVRP);
+        // console.log(horaFinalVRP);
 
-        console.log('Diff hora inicial: ' + (horaInicial.getTime()-horaInicialVRP.getTime())/ (1000 * 60));
-        console.log('Diff hora inicial: ' + (horaInicialVRP.getTime()-horaInicial.getTime())/ (1000 * 60));
+        // console.log('Diff hora inicial: ' + (horaInicial.getTime()-horaInicialVRP.getTime())/ (1000 * 60));
+        // console.log('Diff hora inicial: ' + (horaInicialVRP.getTime()-horaInicial.getTime())/ (1000 * 60));
 
 
         // const a = new Date(2021, 0, 1);
@@ -240,8 +242,11 @@ export class ParametrosVRPComponent implements OnInit {
       this.objParametro.flStatus = true;
       this.objParametro.idVRP = this.idVRP;
 
+      this.listaParametrosVRP.push(this.objParametro);
+
       this.boolLoading = false;
       console.log(this.objParametro);
+      console.log(this.listaParametrosVRP);
     } else {
       this.boolLoading = false;
       this.messageService.add({severity:'warn', summary:'Atenção', detail:'Valores inválidos, verifique.'});

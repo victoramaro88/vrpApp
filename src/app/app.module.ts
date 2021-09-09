@@ -38,6 +38,8 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { NovoUsuarioComponent } from './pages/configs/novo-usuario/novo-usuario.component';
+import { CadastroVRPComponent } from './pages/configs/cadastro-vrp/cadastro-vrp.component';
+import { GerenciarVRPComponent } from './pages/configs/gerenciar-vrp/gerenciar-vrp.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -57,7 +59,9 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     HistoricoVRPComponent,
     UsuarioComponent,
     GerenciarUsuariosComponent,
-    NovoUsuarioComponent
+    NovoUsuarioComponent,
+    CadastroVRPComponent,
+    GerenciarVRPComponent
   ],
   imports: [
     BrowserModule,

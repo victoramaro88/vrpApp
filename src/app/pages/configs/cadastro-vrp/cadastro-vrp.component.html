@@ -1,0 +1,88 @@
+<h1>CADASTROS VRP</h1>
+<p-blockUI [blocked]="boolLoading"></p-blockUI>
+<p-toast  position="top-center"></p-toast>
+
+<div class="card">
+  <div class="formgrid grid">
+      <div class="field col-12 md:col-1 sm:col-1">
+          <label for="idVRP">Id</label>
+          <input [(ngModel)]="objVRP.idVRP" id="idVRP" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-3 sm:col-3">
+          <label for="descricao">Descrição</label>
+          <input [(ngModel)]="objVRP.descrVRP" id="descricao" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-2">
+          <label for="modelo">Modelo</label>
+          <input [(ngModel)]="objVRP.modelo" id="modelo" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-5 sm:col-6">
+          <label for="logradouro">Logradouro</label>
+          <input [(ngModel)]="objVRP.logradouro" id="logradouro" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-1 sm:col-2">
+          <label for="numLog">Nº</label>
+          <input [(ngModel)]="objVRP.numero" id="numLog" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="bairro">Bairro</label>
+          <input [(ngModel)]="objVRP.bairro" id="bairro" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-4 sm:col-4">
+          <label for="cidade">Cidade</label><br>
+          <p-dropdown id="cidade" [options]="lstCidade"
+          [(ngModel)]="cidadeSelecionada" placeholder="Selecione"
+          optionLabel="descCidade" [style]="{'width':'100%'}"
+          [filter]="true" filterBy="descCidade"
+          ></p-dropdown>
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="cep">CEP</label>
+          <input [(ngModel)]="objVRP.cep" id="cep" type="text" class="inputfield w-full" [dropSpecialCharacters]="false" mask="00000-000" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="latitude">Latitude</label>
+          <input [(ngModel)]="objVRP.latitude" id="latitude" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="longitude">Longitude</label>
+          <input [(ngModel)]="objVRP.longitude" id="longitude" type="text" class="inputfield w-full" pInputText />
+          <!-- <p-button label="P"></p-button> -->
+      </div>
+      <!-- <div class="field col-6 md:col-3 sm:col-4 text-center">
+          <label for="status">Status</label>
+          <p-selectButton [disabled]="true" id="status"  [options]="[{label: 'Inativo', value: false}, {label: 'Ativo', value: true}]" [(ngModel)]="objUsr.statusUsuario" optionLabel="label" optionValue="value"></p-selectButton>
+      </div> -->
+      <!-- <div class="field col-6 md:col-2 sm:col-4">
+        <label for="perfil">Perfil</label><br>
+        <p-dropdown [disabled]="true" id="perfil" [options]="listaPerfil" [(ngModel)]="perfilSelecionado" placeholder="Selecione" optionLabel="descPerfil"></p-dropdown>
+      </div> -->
+      <!-- <div class="field col-12 md:col-8 sm:col-12 text-center">
+        <br>
+        <button [disabled]="boolLoading" *ngIf="!alterarSenha" (click)="alterarSenha=true" pButton pRipple type="button" label="Alterar Senha" class="p-button-raised p-button-warning"></button>
+        <div *ngIf="alterarSenha" class="grid text-center">
+          <div class="field col-12 sm:col-5 text-center">
+            <label for="senha">Nova senha</label><br>
+            <p-password [ngClass]="{'border-orange-500 border-3': senhaNaoConfere}" [(ngModel)]="senha" (change)="ValidaSenhas();" id="senha" [toggleMask]="true"></p-password>
+          </div>
+          <div class="field col-12 sm:col-5 text-center">
+            <label for="novaSenha">Repita a senha</label><br>
+            <p-password [ngClass]="{'border-orange-500 border-3': senhaNaoConfere}" id="novaSenha" (change)="ValidaSenhas();" [(ngModel)]="objUsr.senhaUsuario" [feedback]="false" [toggleMask]="true"></p-password>
+            <br><b><small *ngIf="senhaNaoConfere" id="novaSenha-help" class="p-error">{{mensagemSenha}}</small></b>
+          </div>
+          <div class="field col-12 sm:col-2 pt-4">
+            <button [disabled]="boolLoading" (click)="CancelaAlterarSenha();" pButton pRipple type="button" label="Cancelar" class="p-button-raised p-button-danger"></button>
+          </div>
+        </div>
+      </div> -->
+  </div>
+</div>
+
+<hr>
+
+<div class="text-right">
+  <button [disabled]="boolLoading" [routerLink]="['/home/gerenciarVRP']" routerLinkActive="router-link-active"  pButton icon="pi pi-times" type="button" class="p-button-raised p-button-danger" label="Cancelar" styleClass="p-mr-2"></button>
+  &nbsp;<p-button [disabled]="boolLoading" (click)="Salvar()" class="p-button-raised" icon="pi pi-check" label="Salvar" styleClass="p-mr-2"></p-button>
+</div>
+<p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+
