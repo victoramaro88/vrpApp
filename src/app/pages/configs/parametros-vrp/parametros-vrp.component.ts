@@ -25,7 +25,7 @@ export class ParametrosVRPComponent implements OnInit {
   listaVRP: VRPModel[] = [];
   // objVRP: VRPModel = {idVRP: 0, descrVRP: '', modelo: '', logradouro: '', numero: '', bairro: '', cep: '', latitude: 0, longitude: 0, imagem: '', idCidade: 0, descCidade: '', idNumCel: 0, tempoEnvioMinutos: 0, fatorMultVaz: 0, status: false};
   listaParametrosVRP: ParametrosVRPModel[] = [];
-  objParametro: ParametrosVRPModel = {idParametro: 0, pressao: 0, horaInicial: '', horaFinal: '', idVRP: 0, flStatus: false};
+  objParametro: ParametrosVRPModel = {idParametro: 0, pressao: 0, horaInicial: '', horaFinal: '', pressaoFds: 0, idVRP: 0, flStatus: false};
   statuses: SelectItem[] = [];
   clonedItens: { [s: string]: ParametrosVRPModel; } = {};
   item2: ParametrosVRPModel[] = [];
@@ -194,7 +194,7 @@ export class ParametrosVRPComponent implements OnInit {
   SalvarNovoParametro() {
     this.boolLoading = true;
     if(!this.pressaoInvalida && !this.horaInInvalida  && !this.horaFiInvalida
-      && this.objParametro.pressao >= 0 && this.objParametro.horaFinal.length > 0 && this.objParametro.horaInicial.length > 0) {
+      && this.objParametro.pressao >= 0 && this.objParametro.pressaoFds >= 0 && this.objParametro.horaFinal.length > 0 && this.objParametro.horaInicial.length > 0) {
 
       let horaIn = this.objParametro.horaInicial.split(':')[0];
       let minutiIn = this.objParametro.horaInicial.split(':')[1];

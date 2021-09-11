@@ -85,6 +85,7 @@
                 <th style="text-align: center;">Pressão</th>
                 <th style="text-align: center;">Hora Inicial</th>
                 <th style="text-align: center;">Hora Final</th>
+                <th style="text-align: center;">Pressão Fds</th>
                 <th style="text-align: center;">Status</th>
                 <th style="text-align: center; width:8rem">Ação</th>
             </tr>
@@ -118,6 +119,16 @@
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{item.horaFinal}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align: center;">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="item.pressaoFds">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{item.pressaoFds}}
                         </ng-template>
                     </p-cellEditor>
                 </td>
