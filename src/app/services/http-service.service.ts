@@ -69,4 +69,16 @@ export class HttpService {
   public ListaNumeroCelularOperadora(idNumCel: number): Observable<NumeroCelOperModel[]> {
     return this.http.get<NumeroCelOperModel[]>(`${environment.urlAPI}/VRP/ListaNumeroCelularOperadora/${idNumCel}`);
   }
+
+  public ManterVRP(objVRP: VRPModel): Observable<string> {
+    return this.http.post<string>(`${environment.urlAPI}/VRP/ManterVRP`, objVRP);
+  }
+
+  public VerificaNumCelVRP(idNumCel: number): Observable<VRPModel[]> { //-> NÃO USADO!
+    return this.http.get<VRPModel[]>(`${environment.urlAPI}/VRP/VerificaNumCelVRP/${idNumCel}`);
+  }
+
+  public ListaIDsNumCelUsados(): Observable<number[]> {
+    return this.http.get<number[]>(`${environment.urlAPI}/VRP/ListaIDsNumCelUsados`);
+  }
 }

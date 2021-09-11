@@ -2,3 +2,8 @@
 .cursorMouse {
   cursor: pointer;
 }
+
+.campoObrigatorio {
+  color: red;
+  font-size: small;
+}

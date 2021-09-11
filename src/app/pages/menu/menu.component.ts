@@ -31,7 +31,8 @@ export class MenuComponent implements OnInit {
           icon: 'pi pi-pw pi-briefcase',
           items: [
             {
-              label: 'Cadastro',
+              visible: (this.objUsr.idPerfil === 1 ? true : false),
+              label: 'Gerenciar',
               icon: 'pi pi-globe',
               routerLink: '/home/gerenciarVRP'
             },
