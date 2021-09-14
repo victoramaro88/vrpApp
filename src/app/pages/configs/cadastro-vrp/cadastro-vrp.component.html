@@ -4,11 +4,11 @@
 
 <div class="card">
   <div class="formgrid grid">
-      <div class="field col-12 md:col-1 sm:col-1">
+      <div class="field col-2 md:col-1 sm:col-1">
           <label for="idVRP">Id<span class="campoObrigatorio">*</span></label>
           <input disabled [(ngModel)]="objVRP.idVRP" id="idVRP" type="text" class="inputfield w-full" pInputText />
       </div>
-      <div class="field col-12 md:col-3 sm:col-3">
+      <div class="field col-10 md:col-3 sm:col-3">
           <label for="descricao">Descrição<span class="campoObrigatorio">*</span></label>
           <input [(ngModel)]="objVRP.descrVRP" id="descricao" type="text" class="inputfield w-full" pInputText />
       </div>
@@ -50,7 +50,7 @@
           <!-- <p-button label="P"></p-button> -->
       </div>
       <div class="field col-12 md:col-3 sm:col-4">
-          <label for="cidade">Celular<span class="campoObrigatorio">*</span></label><br>
+          <label for="celular">Celular<span class="campoObrigatorio">*</span></label><br>
           <p-dropdown (onChange)="VerificaNumCelVRP();" id="celular" [options]="lstNumCelOper"
           [(ngModel)]="numCelOperSelecionado" placeholder="Selecione"
           optionLabel="numero" [style]="{'width':'100%'}"
@@ -64,6 +64,13 @@
       <div class="field col-6 md:col-2 sm:col-2">
         <label for="fatorMultVaz">Fator mult.<span class="campoObrigatorio">*</span></label>
         <input [(ngModel)]="objVRP.fatorMultVaz" id="fatorMultVaz" type="number" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-6 md:col-2 sm:col-4">
+          <label for="tipParam">Tipo Parâmetro<span class="campoObrigatorio">*</span></label><br>
+          <p-dropdown id="tipParam" [options]="lstTipoParametro"
+          [(ngModel)]="tipoParametroSelecionado" placeholder="Selecione"
+          optionLabel="tipParamDesc" [style]="{'width':'100%'}"
+          ></p-dropdown>
       </div>
       <div class="field col-6 md:col-3 sm:col-4">
         <label for="fatorMultVaz">Status<span class="campoObrigatorio">*</span></label>

@@ -5,6 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { VRPModel } from 'src/app/models/vrp.model';
 import { HttpService } from 'src/app/services/http-service.service';
 import { NumeroCelOperModel } from 'src/app/models/numeroCelOper.model';
+import { TipoParametroModel } from 'src/app/models/tipoParametro.model';
 
 @Component({
   selector: 'app-cadastro-vrp',
@@ -17,13 +18,16 @@ export class CadastroVRPComponent implements OnInit {
   boolEditarParametros = false;
   stateOptions: any[];
   msgs: any[] = [];
+  lstTipoParametro: TipoParametroModel[] = [];
+  objTipoParametro: TipoParametroModel = {tipParamCod: 0, tipParamDesc: '', tipParamStatus: false};
+  tipoParametroSelecionado: TipoParametroModel = {tipParamCod: 0, tipParamDesc: '', tipParamStatus: false};
   lstCidade: CidadeModel[] = [];
   objCidade: CidadeModel = {idCidade: 0, descCidade: '0', codigoIBGE: 0, idEstado: 0};
   cidadeSelecionada: CidadeModel = {idCidade: 0, descCidade: '0', codigoIBGE: 0, idEstado: 0};
   lstNumCelOper: NumeroCelOperModel[] = [];
   objNumCelOper: NumeroCelOperModel = {idNumCel: 0, ddi: '', ddd: '', numero: '', idOperadora: 0, status: false, descricaoOperadora: '', statusOperadora: false};
   numCelOperSelecionado: NumeroCelOperModel = {idNumCel: 0, ddi: '', ddd: '', numero: '', idOperadora: 0, status: false, descricaoOperadora: '', statusOperadora: false};
-  objVRP: VRPModel = {idVRP: 0, descrVRP: '', modelo: '', logradouro: '', numero: '', bairro: '', cep: '', latitude: 0, longitude: 0, imagem: '', idCidade: 0, descCidade: '', idNumCel: 0, tempoEnvioMinutos: 0, fatorMultVaz: 0, status: true};
+  objVRP: VRPModel = {idVRP: 0, descrVRP: '', modelo: '', logradouro: '', numero: '', bairro: '', cep: '', latitude: 0, longitude: 0, imagem: '', idCidade: 0, descCidade: '', idNumCel: 0, tipParamCod: 0, tempoEnvioMinutos: 0, fatorMultVaz: 0, status: true};
   idVRP = 0;
 
   pressaoInvalida = false;
@@ -130,6 +134,25 @@ export class CadastroVRPComponent implements OnInit {
         this.lstCidade = response;
       }
 
+      this.ListarTipoParametro(0);
+    }, error => {
+      this.msgs = [];
+      console.log(error);
+      if(error.status === 404) {
+        this.messageService.add({severity:'error', summary:'Erro', detail:'Erro ao conectar com o servidor.'});
+      } else {
+        this.messageService.add({severity:'error', summary:'Erro', detail: error.message});
+      }
+      this.boolLoading = false;
+    });
+  }
+
+  ListarTipoParametro(idParametro: number) {
+    this.http.ListarTipoParametro(idParametro).subscribe(response => {
+      if(response && response.length > 0) {
+        this.lstTipoParametro = response;
+      }
+
       this.ListaNumeroCelularOperadora(0);
     }, error => {
       this.msgs = [];
@@ -162,6 +185,7 @@ export class CadastroVRPComponent implements OnInit {
           this.objVRP.idCidade = itemVRP.idCidade;
           this.objVRP.descCidade = itemVRP.descCidade;
           this.objVRP.idNumCel = itemVRP.idNumCel;
+          this.objVRP.tipParamCod = itemVRP.tipParamCod;
           this.objVRP.tempoEnvioMinutos = itemVRP.tempoEnvioMinutos;
           this.objVRP.fatorMultVaz = itemVRP.fatorMultVaz;
           this.objVRP.status = itemVRP.status;
@@ -173,6 +197,10 @@ export class CadastroVRPComponent implements OnInit {
           let numCel = this.lstNumCelOper.find(n => n.idNumCel === itemVRP.idNumCel);
           this.objNumCelOper = numCel ? numCel : {idNumCel: 0, ddi: '', ddd: '', numero: '', idOperadora: 0, status: false, descricaoOperadora: '', statusOperadora: false};
           this.numCelOperSelecionado = numCel ? numCel : {idNumCel: 0, ddi: '', ddd: '', numero: '', idOperadora: 0, status: false, descricaoOperadora: '', statusOperadora: false};
+
+          let tipParam = this.lstTipoParametro.find(p => p.tipParamCod === itemVRP.tipParamCod);
+          this.objTipoParametro = tipParam ? tipParam : {tipParamCod: 0, tipParamDesc: '', tipParamStatus: false};
+          this.tipoParametroSelecionado = tipParam ? tipParam : {tipParamCod: 0, tipParamDesc: '', tipParamStatus: false};
         }
       }
       this.boolLoading = false;
@@ -196,6 +224,7 @@ export class CadastroVRPComponent implements OnInit {
           this.boolLoading = true;
           this.objVRP.idCidade = this.cidadeSelecionada.idCidade;
           this.objVRP.idNumCel = this.numCelOperSelecionado.idNumCel;
+          this.objVRP.tipParamCod = this.tipoParametroSelecionado.tipParamCod;
           this.ManterVRP(this.objVRP);
         }
       });

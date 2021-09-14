@@ -11,6 +11,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NovoUsuarioComponent } from './pages/configs/novo-usuario/novo-usuario.component';
+import { GerenciarpcComponent } from './pages/pontoCritico/gerenciarpc/gerenciarpc.component';
+import { CadastroPCComponent } from './pages/pontoCritico/cadastro-pc/cadastro-pc.component';
+import { HistoricoPCComponent } from './pages/pontoCritico/historico-pc/historico-pc.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,6 +29,9 @@ const routes: Routes = [
       { path: 'novoUsuario', component: NovoUsuarioComponent },
       { path: 'cadastroVRP', component: CadastroVRPComponent },
       { path: 'gerenciarVRP', component: GerenciarVRPComponent },
+      { path: 'gerenciarPC', component: GerenciarpcComponent },
+      { path: 'cadastroPC', component: CadastroPCComponent },
+      { path: 'historicoPC', component: HistoricoPCComponent },
     ]
   },
   // { path: 'dashboard', component: DashboardComponent },

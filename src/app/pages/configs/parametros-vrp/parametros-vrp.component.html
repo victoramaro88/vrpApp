@@ -86,6 +86,8 @@
                 <th style="text-align: center;">Hora Inicial</th>
                 <th style="text-align: center;">Hora Final</th>
                 <th style="text-align: center;">Pressão Fds</th>
+                <th style="text-align: center;">Abertura VRP</th>
+                <th style="text-align: center;">Fechamento VRP</th>
                 <th style="text-align: center;">Status</th>
                 <th style="text-align: center; width:8rem">Ação</th>
             </tr>
@@ -129,6 +131,26 @@
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{item.pressaoFds}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align: center;">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="statuses" [(ngModel)]="item.sttAbertura" [style]="{'width':'100%'}"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{item.sttAbertura ? 'Ativo' : 'Inativo'}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align: center;">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="statuses" [(ngModel)]="item.sttFechamento" [style]="{'width':'100%'}"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{item.sttFechamento ? 'Ativo' : 'Inativo'}}
                         </ng-template>
                     </p-cellEditor>
                 </td>

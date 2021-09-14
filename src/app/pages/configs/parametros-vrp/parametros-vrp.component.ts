@@ -25,7 +25,7 @@ export class ParametrosVRPComponent implements OnInit {
   listaVRP: VRPModel[] = [];
   // objVRP: VRPModel = {idVRP: 0, descrVRP: '', modelo: '', logradouro: '', numero: '', bairro: '', cep: '', latitude: 0, longitude: 0, imagem: '', idCidade: 0, descCidade: '', idNumCel: 0, tempoEnvioMinutos: 0, fatorMultVaz: 0, status: false};
   listaParametrosVRP: ParametrosVRPModel[] = [];
-  objParametro: ParametrosVRPModel = {idParametro: 0, pressao: 0, horaInicial: '', horaFinal: '', pressaoFds: 0, idVRP: 0, flStatus: false};
+  objParametro: ParametrosVRPModel = {idParametro: 0, pressao: 0, horaInicial: '', horaFinal: '', pressaoFds: 0, idVRP: 0, sttAbertura: false, sttFechamento: false, flStatus: false};
   statuses: SelectItem[] = [];
   clonedItens: { [s: string]: ParametrosVRPModel; } = {};
   item2: ParametrosVRPModel[] = [];

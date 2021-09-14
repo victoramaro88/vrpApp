@@ -12,6 +12,7 @@ export interface VRPModel {
   idCidade: number;
   descCidade: string;
   idNumCel: number;
+  tipParamCod: number;
   tempoEnvioMinutos: number;
   fatorMultVaz: number;
   status: boolean;

@@ -56,6 +56,23 @@ export class MenuComponent implements OnInit {
         ]
       },
       {
+          label: 'Ponto Crítico',
+          icon: 'pi pi-exclamation-triangle',
+          items: [
+            {
+              visible: (this.objUsr.idPerfil === 1 ? true : false),
+              label: 'Gerenciar',
+              icon: 'pi pi-globe',
+              routerLink: '/home/gerenciarPC'
+            },
+            {
+              label: 'Histórico',
+              icon: 'pi pi-chart-line',
+              routerLink: '/home/historicoPC'
+            }
+        ]
+      },
+      {
           label: 'Usuário',
           icon: 'pi pi-user',
           items: [

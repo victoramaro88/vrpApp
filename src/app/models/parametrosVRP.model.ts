@@ -5,5 +5,7 @@ export interface ParametrosVRPModel {
   horaFinal: string;
   pressaoFds: number;
   idVRP: number;
+  sttAbertura: boolean;
+  sttFechamento: boolean;
   flStatus: boolean;
 }

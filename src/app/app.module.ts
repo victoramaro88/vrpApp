@@ -40,6 +40,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { NovoUsuarioComponent } from './pages/configs/novo-usuario/novo-usuario.component';
 import { CadastroVRPComponent } from './pages/configs/cadastro-vrp/cadastro-vrp.component';
 import { GerenciarVRPComponent } from './pages/configs/gerenciar-vrp/gerenciar-vrp.component';
+import { GerenciarpcComponent } from './pages/pontoCritico/gerenciarpc/gerenciarpc.component';
+import { CadastroPCComponent } from './pages/pontoCritico/cadastro-pc/cadastro-pc.component';
+import { HistoricoPCComponent } from './pages/pontoCritico/historico-pc/historico-pc.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -61,7 +64,10 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     GerenciarUsuariosComponent,
     NovoUsuarioComponent,
     CadastroVRPComponent,
-    GerenciarVRPComponent
+    GerenciarVRPComponent,
+    GerenciarpcComponent,
+    CadastroPCComponent,
+    HistoricoPCComponent
   ],
   imports: [
     BrowserModule,

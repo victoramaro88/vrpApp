@@ -10,6 +10,8 @@ import { PerfilUsuarioModel } from "../models/perfil.model";
 import { UsuarioModel } from "../models/usuario.model";
 import { VRPModel } from "../models/vrp.model";
 import { NumeroCelOperModel } from '../models/numeroCelOper.model';
+import { TipoParametroModel } from '../models/tipoParametro.model';
+import { PontoCriticoModel } from '../models/pontoCritico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +82,13 @@ export class HttpService {
 
   public ListaIDsNumCelUsados(): Observable<number[]> {
     return this.http.get<number[]>(`${environment.urlAPI}/VRP/ListaIDsNumCelUsados`);
+  }
+
+  public ListarTipoParametro(idParametro: number): Observable<TipoParametroModel[]> {
+    return this.http.get<TipoParametroModel[]>(`${environment.urlAPI}/VRP/ListarTipoParametro/${idParametro}`);
+  }
+
+  public ListarPC(idPC: number): Observable<PontoCriticoModel[]> {
+    return this.http.get<PontoCriticoModel[]>(`${environment.urlAPI}/PontoCritico/ListaPC/${idPC}`);
   }
 }
