@@ -12,6 +12,8 @@ import { VRPModel } from "../models/vrp.model";
 import { NumeroCelOperModel } from '../models/numeroCelOper.model';
 import { TipoParametroModel } from '../models/tipoParametro.model';
 import { PontoCriticoModel } from '../models/pontoCritico.model';
+import { ParamListaHistoricoPCModel } from '../models/paramHistPC.model';
+import { HistoricoPCModel } from '../models/historicoPC.model';
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +92,13 @@ export class HttpService {
 
   public ListarPC(idPC: number): Observable<PontoCriticoModel[]> {
     return this.http.get<PontoCriticoModel[]>(`${environment.urlAPI}/PontoCritico/ListaPC/${idPC}`);
+  }
+
+  public ManterPC(objVRP: PontoCriticoModel): Observable<string> {
+    return this.http.post<string>(`${environment.urlAPI}/PontoCritico/ManterPC`, objVRP);
+  }
+
+  public ListaHistoricoPC(objParametros: ParamListaHistoricoPCModel): Observable<HistoricoPCModel[]> {
+    return this.http.post<HistoricoPCModel[]>(`${environment.urlAPI}/PontoCritico/ListaHistoricoPC`, objParametros);
   }
 }

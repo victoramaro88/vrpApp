@@ -1,1 +1,87 @@
-<p>cadastro-pc works!</p>
+<h1>CADASTRO PONTO CRÍTICO</h1>
+<p-blockUI [blocked]="boolLoading"></p-blockUI>
+<p-toast  position="top-center"></p-toast>
+
+<div class="card">
+  <div class="formgrid grid">
+      <div class="field col-2 md:col-1 sm:col-1">
+          <label for="idPC">Id<span class="campoObrigatorio">*</span></label>
+          <input disabled [(ngModel)]="objPC.idPC" id="idPC" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-10 md:col-3 sm:col-3">
+          <label for="descPC">Descrição<span class="campoObrigatorio">*</span></label>
+          <input [(ngModel)]="objPC.descPC" id="descPC" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-2">
+          <label for="modeloPC">Modelo<span class="campoObrigatorio">*</span></label>
+          <input [(ngModel)]="objPC.modeloPC" id="modeloPC" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-10 md:col-5 sm:col-6">
+          <label for="logradouroPC">Logradouro<span class="campoObrigatorio">*</span></label>
+          <input [(ngModel)]="objPC.logradouroPC" id="logradouroPC" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-2 md:col-1 sm:col-2">
+          <label for="numeroPC">Nº<span class="campoObrigatorio">*</span></label>
+          <input [(ngModel)]="objPC.numeroPC" id="numeroPC" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="bairroPC">Bairro<span class="campoObrigatorio">*</span></label>
+          <input [(ngModel)]="objPC.bairroPC" id="bairroPC" type="text" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-4 sm:col-4">
+          <label for="cidade">Cidade<span class="campoObrigatorio">*</span></label><br>
+          <p-dropdown id="cidade" [options]="lstCidade"
+          [(ngModel)]="cidadeSelecionada" placeholder="Selecione"
+          optionLabel="descCidade" [style]="{'width':'100%'}"
+          [filter]="true" filterBy="descCidade"
+          ></p-dropdown>
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="cepPC">CEP<span class="campoObrigatorio">*</span></label>
+          <input [(ngModel)]="objPC.cepPC" id="cepPC" type="text" class="inputfield w-full" [dropSpecialCharacters]="false" mask="00000-000" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="latitudePC">Latitude</label>
+          <input [(ngModel)]="objPC.latitudePC" id="latitudePC" type="number" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-12 md:col-2 sm:col-3">
+          <label for="longitudePC">Longitude</label>
+          <input [(ngModel)]="objPC.longitudePC" id="longitudePC" type="number" class="inputfield w-full" pInputText />
+          <!-- <p-button label="P"></p-button> -->
+      </div>
+      <div class="field col-12 md:col-3 sm:col-4">
+          <label for="celular">Celular<span class="campoObrigatorio">*</span></label><br>
+          <p-dropdown (onChange)="VerificaNumCelPC();" id="celular" [options]="lstNumCelOper"
+          [(ngModel)]="numCelOperSelecionado" placeholder="Selecione"
+          optionLabel="numero" [style]="{'width':'100%'}"
+          [filter]="true" filterBy="numero"
+          ></p-dropdown>
+      </div>
+      <div class="field col-6 md:col-2 sm:col-2">
+        <label for="tempoEnvioMinutos">Tempo<small> (min.)</small><span class="campoObrigatorio">*</span></label>
+        <input [(ngModel)]="objPC.tempoEnvioMinutos" id="tempoEnvioMinutos" type="number" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-6 md:col-2 sm:col-2">
+        <label for="fatorMultVaz">Fator mult.<span class="campoObrigatorio">*</span></label>
+        <input [(ngModel)]="objPC.fatorMultVaz" id="fatorMultVaz" type="number" class="inputfield w-full" pInputText />
+      </div>
+      <div class="field col-6 md:col-2 sm:col-4">
+        <label for="statusVazao">Status Vazão<span class="campoObrigatorio">*</span></label>
+        <p-selectButton id="statusVazao" [options]="stateOptions" [(ngModel)]="objPC.statusVazao" optionLabel="label" optionValue="value"></p-selectButton>
+      </div>
+      <div class="field col-6 md:col-2 sm:col-4">
+        <label for="statusPC">Status<span class="campoObrigatorio">*</span></label>
+        <p-selectButton id="statusPC" [options]="stateOptions" [(ngModel)]="objPC.statusPC" optionLabel="label" optionValue="value"></p-selectButton>
+      </div>
+  </div>
+  <p><small><span class="campoObrigatorio">*</span> Campos Obrigatórios.</small></p>
+</div>
+
+<hr>
+
+<div class="text-right">
+  <button [disabled]="boolLoading" [routerLink]="['/home/gerenciarPC']" routerLinkActive="router-link-active"  pButton icon="pi pi-times" type="button" class="p-button-raised p-button-danger" label="Cancelar" styleClass="p-mr-2"></button>
+  &nbsp;<p-button [disabled]="boolLoading" (click)="Salvar()" class="p-button-raised" icon="pi pi-check" label="Salvar" styleClass="p-mr-2"></p-button>
+</div>
+<p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+

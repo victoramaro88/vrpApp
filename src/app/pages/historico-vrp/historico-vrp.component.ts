@@ -17,8 +17,6 @@ export class HistoricoVRPComponent implements OnInit {
   msgs: any[] = [];
   listaVRP: VRPModel[] = [];
   listaHistorico: HistoricoVRPModel[] = [];
-  // dataInicial: Date = new Date;
-  // dataFinal: Date = new Date;
   dataInicial: any;
   dataFinal: any;
   idVRP = 0;

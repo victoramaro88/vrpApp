@@ -13,11 +13,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.router.navigate(['/home/dashboard']);
-    this.router.navigate(['/home/parametrosVRP']);
+    this.router.navigate(['/home/dashboard']);
+    // this.router.navigate(['/home/parametrosVRP']);
     // this.router.navigate(['/home/gerenciarVRP']);
     // this.router.navigate(['/home/gerenciarUsuarios']);
     // this.router.navigate(['/home/novoUsuario']);
+    // this.router.navigate(['/home/gerenciarPC']);
   }
 
 }
